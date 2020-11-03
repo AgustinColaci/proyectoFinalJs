@@ -92,6 +92,7 @@ function agregarACarrito(index) {
   function loadCarrito() {
     divCarrito.innerHTML = "";
     divTotal.innerHTML = "";
+    carroVacio();
   
     if (carrito.length > 0) {
       var sumador = 0;
@@ -143,18 +144,8 @@ function agregarACarrito(index) {
     $(miCarrito).empty();
     $(miTotal).empty();
     carrito = [];
-
-
-    if (carrito.length<=0){
-      let carritoVacio = document.querySelector(".carritoVacio");
-      if (carritoVacio === null){
-    let divcarr = document.createElement("p");
-    divcarr.className = "carritoVacio";
-    divcarr.innerHTML = `Tu carrito esta vacío`;
-    $(divCarrito).append(divcarr);
+    carroVacio();
   };
-  };
-  }
 
   //FILTRO DE BÚSQUEDA
   
@@ -206,8 +197,14 @@ function agregarACarrito(index) {
     localStorage.carrito = JSON.stringify(carrito);
   }
 
-
-
-
-
-  
+  function carroVacio() {    
+    if (carrito.length<=0){
+      let carritoVacio = document.querySelector(".carritoVacio");
+      if (carritoVacio === null){
+    let divcarr = document.createElement("p");
+    divcarr.className = "carritoVacio";
+    divcarr.innerHTML = `Tu carrito esta vacío`;
+    $(divCarrito).append(divcarr);
+    };
+  } 
+}
