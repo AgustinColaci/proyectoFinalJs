@@ -109,16 +109,16 @@ function agregarACarrito(index) {
         sumador = sumador + producto.precio * producto.cantidad;
       });
   
-      let divTot = document.createElement("p");
+
+  let divTot = document.createElement("div");
       divTotal.className="total"
       divTot.style = "clear: both";
       divTot.innerHTML = `<h2>Total: $ ${sumador}</h2>
-      <a href="pedido.html"> Confirmar compra </a>
+      <a class= "btn-dark" href="pedido.html">Confirmar compra</a>
       <a onclick="borrarCarrito()"> Borrar todo </a>`;
       divTotal.appendChild(divTot);
     }
   }
-
 
   //--------------------------------------------------------
 
@@ -195,6 +195,16 @@ function agregarACarrito(index) {
       }
   
   busqueda.addEventListener('keyup', filtrar);
+
+  function inputChange(e) {
+    if (e.target.value == 0) {
+      carrito.splice(e.target.name, 1);
+    } else {
+      carrito[e.target.name].cantidad = e.target.value;
+    }
+    loadCarrito();
+    localStorage.carrito = JSON.stringify(carrito);
+  }
 
 
 
